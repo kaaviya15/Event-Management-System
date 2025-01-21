@@ -19,7 +19,7 @@ public class EventMapper {
         eventDTO.setLocation(event.getLocation());
         eventDTO.setStartTime(event.getStartTime());
         eventDTO.setEndTime(event.getEndTime());
-        eventDTO.setDescription(eventDTO.getDescription());
+        eventDTO.setDescription(event.getDescription());
         eventDTO.setTickets(tickets);
         eventDTO.setPayments(payments);
         return eventDTO;

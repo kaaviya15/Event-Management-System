@@ -13,6 +13,6 @@ import java.util.List;
 public interface TicketClient {
 
     @GetMapping("/ticket")
-    List<Ticket> getTicket(@RequestParam("ticketId") Long ticketId);
+    List<Ticket> getTicket(@RequestParam("eventId") Long eventId);
 
 }

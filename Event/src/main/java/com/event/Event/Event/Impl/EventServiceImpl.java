@@ -49,12 +49,17 @@ public class EventServiceImpl implements EventService {
                 .collect(Collectors.toList());
     }
 
-    private EventDTO convertToDto(Event event){
-        List<Ticket> tickets=ticketClient.getTicket(event.getTicketId());
-        List<Payment> payments=paymentClient.getPayment(event.getPaymentId());
-        EventDTO eventDTO= EventMapper.mapToEventTicketDto(event,tickets,payments);
+    private EventDTO convertToDto(Event event) {
+        Long eventId = event.getTicketId(); // Assuming ticketId is equivalent to eventId
+        if (eventId == null || eventId <= 0) {
+            throw new IllegalArgumentException("Invalid eventId for event: " + event.getId());
+        }
+        List<Ticket> tickets = ticketClient.getTicket(eventId); // Updated to expect a list
+        List<Payment> payments = paymentClient.getPayment(event.getPaymentId());
+        EventDTO eventDTO = EventMapper.mapToEventTicketDto(event, tickets, payments);
         return eventDTO;
     }
+
 
     @Override
     public EventDTO getEventById(Long id) {
